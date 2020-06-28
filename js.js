@@ -10,19 +10,16 @@ function preload() {
   floorImage = loadImage('./assets/floor/6.png');
   wallImage = loadImage('./assets/wall/1.png');
 
-  stay = loadAnimation(loadSpriteSheet('./assets/players/stay.png', 144, 144, 10));
-  hammerHit = loadAnimation(loadSpriteSheet('./assets/players/hammerHit.png', 144, 144, 5));
-  
+  player1Sprite = loadSpriteSheet('./assets/players/1.png', 144, 144, 90);
+  player1 = loadAnimation(player1Sprite);
 }
 
 function setup() {
   createCanvas(816, 624);
-
   personagem = createSprite(400, 150, 50, 100);
-  personagem.addAnimation('stay', stay);
-  personagem.addAnimation('hammerHit', hammerHit);
+  personagem.addAnimation("alo", player1Sprite);
   personagem.scale = 1.5
-  
+
 }
 
 function draw() {
@@ -30,29 +27,23 @@ function draw() {
   image(floorImage, 0, 0, width, height)
   image(wallImage, 0, 0, width, height)
   
-  if(keyIsDown(37) || keyIsDown(65)){
+  if(keyIsDown(37)){
     personagem.position.x += -2;
     personagem.mirrorX(1);
   }
-  if(keyIsDown(39) || keyIsDown(68)){
+  if(keyIsDown(39)){
     personagem.position.x += +2
     personagem.mirrorX(-1);
   }
-  if(keyIsDown(38) || keyIsDown(87)){
+  if(keyIsDown(38)){
     personagem.position.y += -2
   }
-  if(keyIsDown(40) || keyIsDown(83)){
+  if(keyIsDown(40)){
     personagem.position.y += +2
   }
-  if(keyIsDown(81)){
-    personagem.changeAnimation('hammerHit');
-    setTimeout(() => {
-      if(!keyIsDown(81))
-        personagem.changeAnimation('stay');
-    }, 300);
-  }
-    
 
   drawSprites();
+  
+
 }
 
