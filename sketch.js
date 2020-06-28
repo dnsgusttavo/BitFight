@@ -9,20 +9,29 @@ function preload() {
   //Load Scenary Images
   floorImage = loadImage('./assets/floor/6.png');
   wallImage = loadImage('./assets/wall/1.png');
-
+  
   stay = loadAnimation(loadSpriteSheet('./assets/players/stay.png', 144, 144, 10));
   hammerHit = loadAnimation(loadSpriteSheet('./assets/players/hammerHit.png', 144, 144, 5));
-  
+  animationList = 
+  [["hammerHit", hammerHit],
+  ["stay", stay]];
+
 }
 
 function setup() {
   createCanvas(816, 624);
 
   personagem = createSprite(400, 150, 50, 100);
-  personagem.addAnimation('stay', stay);
-  personagem.addAnimation('hammerHit', hammerHit);
-  personagem.scale = 1.5
   
+  for (animation of animationList){
+    personagem.addAnimation(animation[0], animation[1]);
+  }
+  
+  personagem.addAnimation(`${stay}`, stay);
+
+  
+  personagem.scale = 1.2
+  personagem.debug=true;
 }
 
 function draw() {
@@ -33,10 +42,12 @@ function draw() {
   if(keyIsDown(37) || keyIsDown(65)){
     personagem.position.x += -2;
     personagem.mirrorX(1);
+    personagem.setCollider('rectangle',25,35,50,90)
   }
   if(keyIsDown(39) || keyIsDown(68)){
     personagem.position.x += +2
     personagem.mirrorX(-1);
+    personagem.setCollider('rectangle',-25,35,50,90)
   }
   if(keyIsDown(38) || keyIsDown(87)){
     personagem.position.y += -2
