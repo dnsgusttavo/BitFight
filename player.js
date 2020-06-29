@@ -1,5 +1,6 @@
 class Player{
-    constructor(player, keys){
+    constructor(player, floorLevel, keys){
+      this.floorLevel = floorLevel
       this.player = player;
       this.keyLeft = keys[0];
       this.keyUp = keys[1];
@@ -11,30 +12,49 @@ class Player{
       this.walkSpeed = 5
       this.jumpHeight = -15 
       this.currentKeyPressed;
+      this.jumps = 1;
+      this.jumpLimit = 2;
     }
 
-    setGameRules(){
-      //Set gravity
-      this.player.position.y += this.jumpSpeed;
-      this.jumpSpeed += this.gravity;
-      this.player.position.x = constrain(this.player.position.x, 0, width);
-      this.player.position.y = constrain(this.player.position.y, 0, 356);
+    //Function to verify if key is pressed one time
+    keyOnceDown(key){
+      //Array to convert keyString in keyNumber
+      const keyList = [['ArrowLeft', 37],['ArrowUp', 38],['ArrowRight', 39],['ArrowDown', 40]]
+      
+      //go through the list and check if the list contains the key pressed
+      for(const i of keyList){
+        if(key == i[0])
+          key = i[1];
+      }
+      
+      //If ''w' == 'w' or 38 == 38
+      if(key == String.fromCharCode(this.keyUp).toLowerCase() || key == this.keyUp){
+        if(this.player.position.y == this.floorLevel){
+          this.jumps = 0;
+        }
+        
+        if(this.jumps < this.jumpLimit){
+          this.jumpSpeed = this.jumpHeight; 
+          this.player.changeAnimation('jump'); 
+          this.jumps++;
+        }else{
+          this.player.changeAnimation('stay'); 
+        }
+         
+      }
+    }
 
+    //Function to verify if key is always pressed
+    keyAlwaysDown(){
       //If none key is pressed, the player sprite is stay stopped
       if(!keyIsPressed){
         this.player.changeAnimation('stay');
-        player2.changeAnimation('stay')
       }
-    
+      
       if(keyIsDown(this.keyLeft)){
-          this.player.position.x -= this.walkSpeed;
-          this.player.mirrorX(-1);
-          this.player.changeAnimation('walk');
-      }
-
-      if(String.fromCharCode(this.currentKeyPressed) == this.keyUp){
-        this.jumpSpeed = this.jumpHeight; 
-        this.player.changeAnimation('jump');         
+        this.player.position.x -= this.walkSpeed;
+        this.player.mirrorX(-1);
+        this.player.changeAnimation('walk');
       }
 
       if(keyIsDown(this.keyRight)){
@@ -43,12 +63,28 @@ class Player{
         this.player.changeAnimation('walk');
     
       }
+
       if(keyIsDown(this.keyAttackA)){
-        this.player.changeAnimation('attack');
+        this.player.changeAnimation('attackA');
       }
+      
       if(keyIsDown(this.keyAttackB)){
-        this.player.changeAnimation('Attack_Extra');
+        this.player.changeAnimation('attackB');
       }
+    }
+
+    //Set gravity
+    setGravity(){
+      this.player.position.y += this.jumpSpeed;
+      this.jumpSpeed += this.gravity;
+      this.player.position.x = constrain(this.player.position.x, 0, width);
+      this.player.position.y = constrain(this.player.position.y, 0, this.floorLevel);
+    }
+
+    setGameRules(){
+      this.keyAlwaysDown()
+      this.keyOnceDown()
+      this.setGravity()
     }
 }
 
@@ -59,8 +95,8 @@ function loadPlayerSprites(player1Class, player2Class){
     return [
             ['stay',`assets/${className}/${className}.png`],
             ['walk',`assets/${className}/Walk/1.png`,`assets/${className}/Walk/6.png`],
-            ['attack',`assets/${className}/AttackA/1.png`,`assets/${className}/AttackA/4.png`],
-            ['Attack_Extra',`assets/${className}/AttackB/1.png`,`assets/${className}/AttackB/8.png`],
+            ['attackA',`assets/${className}/AttackA/1.png`,`assets/${className}/AttackA/4.png`],
+            ['attackB',`assets/${className}/AttackB/1.png`,`assets/${className}/AttackB/8.png`],
             ['jump',`assets/${className}/Jump/1.png`,`assets/${className}/Jump/7.png`],
             ];
   }
@@ -78,13 +114,5 @@ function loadPlayerSprites(player1Class, player2Class){
     else if(animation.length == 2)
         player2.addAnimation(animation[0],animation[1]);
   }
-  
- 
-//   personagem2.addAnimation("stay", 'assets/Rogue/Rogue.png');
-//   personagem2.addAnimation("walk", 'assets/Rogue/Walk/walk1.png','assets/Rogue/Walk/walk6.png');
-//   personagem2.addAnimation("attack", 'assets/Rogue/Attack/attack1.png','assets/Rogue/Attack/attack4.png');
-//   personagem2.addAnimation("Attack_Extra", 'assets/Rogue/Attack_Extra/attack_extra1.png','assets/Rogue/Attack_Extra/attack_extra8.png');
-//   personagem2.addAnimation("climb", 'assets/Rogue/Climb/climb2.png','assets/Rogue/Climb/climb4.png');
-//   personagem2.addAnimation("jump", 'assets/Rogue/Jump/jump1.png','assets/Rogue/Jump/jump7.png');
-  
+   
 }
