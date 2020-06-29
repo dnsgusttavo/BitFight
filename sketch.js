@@ -4,32 +4,41 @@ function preload() {
 }
 
 function setup() {
-  //Create Canvas
-  createCanvas(windowWidth, windowHeight);
+  //Create Canvas ## If this values are changed, the platform sprites values should be changed too
+  createCanvas(1536, 763);
 
-  //Create Player1 and Player2
-  player1 = createSprite(100, 356, 128, 128);
-  player2 = createSprite(width - 100, 356, 128, 128);
+  //Create Player1 and Player2 sprites
+  player1 = createSprite(100, 465);
+  player2 = createSprite(width - 100, 465);
 
-  //Load animation for respective player class
+  //Load animation for respective pslayer class
   loadPlayerSprites('Knight','Mage')
 
-  p1 = new Player(player1, 356, [65,87,68,81,69])
-  p2 = new Player(player2, 356, [37,38,39,188,190])
+  //Create players
+  p1 = new Player(player1, 510, [65,87,68,81,69])
+  p2 = new Player(player2, 510, [37,38,39,188,190])
+  
+  //Load plataforms from plataforms file
+  loadPlatforms();
 }
 
 function draw() {
+  //Turn on player functionalities
   p1.setGameRules();
   p2.setGameRules();
-  //Scenary images
+
+  //Draw map in screen
   image(mapa, 0, 0, width, height)
   
+  //Draw all sprites in screen
   drawSprites();
 }
+
 function keyPressed(){
-  console.log(key)
+  //Pass key param for players class once key is down
   p1.keyOnceDown(key)
   p2.keyOnceDown(key)
 }
+
 
 
