@@ -32,7 +32,12 @@ class Player{
         this.floorLevel = width - 1;
       }
     }
-
+    resurrect(){
+      if(this.player.position.y > 1000){
+        this.player.position.x = 740
+        this.player.position.y = 0
+      }
+    }
     //Function to verify if key is pressed one time
     keyOnceDown(key){
       //Array to convert keyString in keyNumber
@@ -94,6 +99,7 @@ class Player{
 
     //Run all players functions
     setGameRules(){
+      this.resurrect();
       this.keyAlwaysDown()
       this.keyOnceDown()
       this.setGravity()

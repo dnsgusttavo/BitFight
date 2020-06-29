@@ -6,7 +6,7 @@ function loadPlatforms(){
     const platafomsList = [
         LeftIsland= createSprite(1250,638,790,255),
         LeftFloatRock = createSprite(1105,350,70,50),
-        CenterFloatRock = createSprite(744,282,180,100),
+        CenterFloatRock = createSprite(744,282,150,100),
         RightFloatRock = createSprite(500,378,65,50),
         RightIsland = createSprite(330,638,640,255),
     ]
