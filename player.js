@@ -8,9 +8,9 @@ class Player{
       this.keyAttackA = keys[3];
       this.keyAttackB = keys[4];
       this.speedOnYAxy = 0;
-      this.gravity = 1;
+      this.gravity = 0.7;
       this.walkSpeed = 5
-      this.jumpHeight = -15
+      this.jumpHeight = -12
       this.currentKeyPressed;
       this.jumps = 1;
       this.jumpLimit = 2;
@@ -26,7 +26,7 @@ class Player{
       this.player.position.y = constrain(this.player.position.y, 0, this.floorLevel);
 
       if(this.player.collide(platforms)){
-        this.speedOnYAxy = 0 //Zera a gravidade pra deixar o personagem cair tranquilo
+        this.speedOnYAxy = 0 
         this.floorLevel = this.player.position.y + 1;
       }else{
         this.floorLevel = width - 1;
@@ -115,12 +115,18 @@ function loadPlayerSprites(player1Class, player2Class){
 
   //Function that return an array with sprites path of player class name
   function setClass(className){
+
+    //images ammount  of sprite
+    spriteNums ={"Knight":[6,5,8,7],"Rogue":[6,7,11,7],"Mage":[6,7,7,7],};
+
+
+    
     return [
             ['stay',`assets/${className}/${className}.png`],
-            ['walk',`assets/${className}/Walk/1.png`,`assets/${className}/Walk/6.png`],
-            ['attackA',`assets/${className}/AttackA/1.png`,`assets/${className}/AttackA/4.png`],
-            ['attackB',`assets/${className}/AttackB/1.png`,`assets/${className}/AttackB/8.png`],
-            ['jump',`assets/${className}/Jump/1.png`,`assets/${className}/Jump/7.png`],
+            ['walk',`assets/${className}/Walk/1.png`,`assets/${className}/Walk/${spriteNums[className][0]}.png`],
+            ['attackA',`assets/${className}/AttackA/1.png`,`assets/${className}/AttackA/${spriteNums[className][1]}.png`],
+            ['attackB',`assets/${className}/AttackB/1.png`,`assets/${className}/AttackB/${spriteNums[className][2]}.png`],
+            ['jump',`assets/${className}/Jump/1.png`,`assets/${className}/Jump/${spriteNums[className][3]}.png`],
             ];
   }
   

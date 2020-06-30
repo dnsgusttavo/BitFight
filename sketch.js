@@ -12,7 +12,7 @@ function setup() {
   player2 = createSprite(width - 100, 465);
 
   //Load animation for respective pslayer class
-  loadPlayerSprites('Knight','Mage')
+  loadPlayerSprites('Mage','Rogue')
 
   //Create players
   p1 = new Player(player1, 510, [65,87,68,81,69])
