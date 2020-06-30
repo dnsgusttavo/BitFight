@@ -13,7 +13,7 @@ BitFigth is a indie game developed by me [@dnsgusttavo](https://ithub.com/dnsgus
 :small_blue_diamond: [p5.collide2D](https://github.com/bmoren/p5.collide2D) </br>
 
 ## :bookmark_tabs: Credits
-Most characters, sprites and images is from internet or other creators. Below is the credits of yous works
+Most characters, sprites and images is from internet or other creators. Below is the credits of yous works. </br>
 </br>:link: Game characters: </br>
 :file_folder: [CraftPix](https://craftpix.net/freebies/assassin-mage-viking-free-pixel-art-game-heroes/)
 </br>:link: Map tileset: </br>
