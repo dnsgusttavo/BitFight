@@ -73,9 +73,15 @@ class Player{
 
     setPlayerDirection(){
       if(this.lookingAt == "Right"){
+        if(this.player.mirrorX() == -1){
+          this.player.position.x += this.player.collider.extents.x/2
+        }
         this.player.collider.offset.x = -(height / 38.400)
         this.player.mirrorX(1);
       }else if(this.lookingAt == "Left"){
+        if(this.player.mirrorX() == 1){
+          this.player.position.x -= this.player.collider.extents.x/2
+        }
         this.player.mirrorX(-1);
         this.player.collider.offset.x = (height / 38.400)
       }
