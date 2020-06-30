@@ -1,5 +1,5 @@
 class Player{
-    constructor(player, floorLevel, keys){
+    constructor(player, floorLevel, keys, lockingAt){
       this.floorLevel = floorLevel
       this.player = player;
       this.keyLeft = keys[0];
@@ -15,10 +15,12 @@ class Player{
       this.jumps = 1;
       this.jumpLimit = 2;
       this.speed = 0;
+      this.lookingAt = lockingAt;
     }
 
     //Set gravity
     setGravity(){
+      this.player.debug = true;
       this.speedOnYAxy += this.gravity;
       this.player.position.y += this.speedOnYAxy;
       
@@ -32,12 +34,14 @@ class Player{
         this.floorLevel = width - 1;
       }
     }
+
     resurrect(){
-      if(this.player.position.y > 1000){
-        this.player.position.x = 740
+      if(this.player.position.y > height){
+        this.player.position.x = width/2
         this.player.position.y = 0
       }
     }
+
     //Function to verify if key is pressed one time
     keyOnceDown(key){
       //Array to convert keyString in keyNumber
@@ -67,6 +71,16 @@ class Player{
       }
     }
 
+    setPlayerDirection(){
+      if(this.lookingAt == "Right"){
+        this.player.collider.offset.x = -(height / 38.400)
+        this.player.mirrorX(1);
+      }else if(this.lookingAt == "Left"){
+        this.player.mirrorX(-1);
+        this.player.collider.offset.x = (height / 38.400)
+      }
+    }
+
     //Function to verify if key is always pressed
     keyAlwaysDown(){
       //If none key is pressed, the player sprite is stay stopped
@@ -75,16 +89,14 @@ class Player{
       }
       
       if(keyIsDown(this.keyLeft)){
-        this.player.setCollider("rectangle",15,20,50,50)
+        this.lookingAt = "Left"
         this.player.position.x -= this.walkSpeed;
-        this.player.mirrorX(-1);
         this.player.changeAnimation('walk');
       }
 
       if(keyIsDown(this.keyRight)){
-        this.player.setCollider("rectangle",-15,20,50,50)
+        this.lookingAt = "Right"
         this.player.position.x += this.walkSpeed;
-        this.player.mirrorX(1);
         this.player.changeAnimation('walk');
       }
 
@@ -99,6 +111,7 @@ class Player{
 
     //Run all players functions
     setGameRules(){
+      this.setPlayerDirection();
       this.resurrect();
       this.keyAlwaysDown()
       this.keyOnceDown()
@@ -119,8 +132,6 @@ function loadPlayerSprites(player1Class, player2Class){
     //images ammount  of sprite
     spriteNums ={"Knight":[6,5,8,7],"Rogue":[6,7,11,7],"Mage":[6,7,7,7],};
 
-
-    
     return [
             ['stay',`assets/${className}/${className}.png`],
             ['walk',`assets/${className}/Walk/1.png`,`assets/${className}/Walk/${spriteNums[className][0]}.png`],
