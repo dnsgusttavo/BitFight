@@ -74,7 +74,7 @@ class Player{
     setPlayerDirection(){
       if(this.lookingAt == "Right"){
         if(this.player.mirrorX() == -1){
-          this.player.position.x += this.player.collider.extents.x/2
+          this.player.position.x += this.player.collider.extents.x/ 2
         }
         this.player.collider.offset.x = -(height / 38.400)
         this.player.mirrorX(1);
@@ -136,7 +136,7 @@ function loadPlayerSprites(player1Class, player2Class){
   function setClass(className){
 
     //images ammount  of sprite
-    spriteNums ={"Knight":[6,5,8,7],"Rogue":[6,7,11,7],"Mage":[6,7,7,7],};
+    spriteNums ={"Knight":[6,5,8,7,10],"Rogue":[6,7,11,7,10],"Mage":[6,7,7,7,10],};
 
     return [
             ['stay',`assets/${className}/${className}.png`],
@@ -144,6 +144,7 @@ function loadPlayerSprites(player1Class, player2Class){
             ['attackA',`assets/${className}/AttackA/1.png`,`assets/${className}/AttackA/${spriteNums[className][1]}.png`],
             ['attackB',`assets/${className}/AttackB/1.png`,`assets/${className}/AttackB/${spriteNums[className][2]}.png`],
             ['jump',`assets/${className}/Jump/1.png`,`assets/${className}/Jump/${spriteNums[className][3]}.png`],
+            ['death',`assets/${className}/Death/1.png`,`assets/${className}/Death/${spriteNums[className][4]}.png`],
             ];
   }
   
