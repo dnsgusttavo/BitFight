@@ -4,7 +4,7 @@
 
 ## :interrobang: The Game
 
-BitFigth is a indie game developed by me [@dnsgusttavo](https://ithub.com/dnsgusttavo) . It's a amazing 2d side view game in pixel style. The base idea is a PvP fight game, in order to eliminate the opnente and for that you can use the bonuses that will be dropped by the mobs of the game.
+BitFight is a indie game developed by me [@dnsgusttavo](https://ithub.com/dnsgusttavo) . It's a amazing 2d side view game in pixel style. The base idea is a PvP fight game, in order to eliminate the opnente and for that you can use the bonuses that will be dropped by the mobs of the game.
 
 ## :rocket: Technologies
 :small_blue_diamond: [Javascript](https://developer.mozilla.org/docs/Web/JavaScript) </br>
