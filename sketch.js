@@ -67,12 +67,20 @@ function draw() {
   
   //Draw all sprites in screen
   drawSprites();
-  if(Math.sign(player1.collider.offset.x) > 0){
-    rect(player1.position.x - 5,player1.position.y - 5, 50,50)
-  }else{
-    rect(player1.position.x - 45,player1.position.y - 5, 50,50)
-  }
-  
+  // if(Math.sign(player1.collider.offset.x) > 0){
+  //   rect(player1.position.x + (player1.collider.extents.x * 0.01),player1.position.y - 5, player1.collider.extents.x,player1.collider.extents.y)
+  // }else{
+  //   rect(player1.position.x - player1.collider.extents.x,player1.position.y - 5, player1.collider.extents.x,player1.collider.extents.y)
+  // }
+  stroke('red');
+  strokeWeight(5);
+  line(player1.collider.right(),player1.position.y,player1.collider.right(),(player1.position.y + player1.collider.extents.x))
+  stroke('blue');
+  line(player1.collider.left(),player1.position.y,player1.collider.left(),(player1.position.y + player1.collider.extents.x))
+  stroke('red');
+  line(player2.collider.right(),player2.position.y,player2.collider.right(),(player2.position.y + player2.collider.extents.x))
+  stroke('blue');
+  line(player2.collider.left(),player2.position.y,player2.collider.left(),(player2.position.y + player2.collider.extents.x))
   // rect()
   // rect(player1.position.x - 48 ,player1.position.y,player1.collider.extents.x,player1.collider.extents.y)
   // rect(player2.position.x,player2.position.y,player2.collider.extents.x,player2.collider.extents.y)
