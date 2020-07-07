@@ -40,9 +40,11 @@ function windowResized(){
 let test = true;
 function draw() {
   //Turn on player functionalities
+ 
   p1.setGameRules();
   p2.setGameRules();
 
+  
   if(collideRectRect(player1.position.x,player1.position.y,player1.collider.extents.x,player1.collider.extents.y,player2.position.x,player2.position.y,player2.collider.extents.x,player2.collider.extents.y)){
     //If player 1 hits
       //Player2 loss life
@@ -65,6 +67,12 @@ function draw() {
   
   //Draw all sprites in screen
   drawSprites();
+  if(Math.sign(player1.collider.offset.x) > 0){
+    rect(player1.position.x - 5,player1.position.y - 5, 50,50)
+  }else{
+    rect(player1.position.x - 45,player1.position.y - 5, 50,50)
+  }
+  
   // rect()
   // rect(player1.position.x - 48 ,player1.position.y,player1.collider.extents.x,player1.collider.extents.y)
   // rect(player2.position.x,player2.position.y,player2.collider.extents.x,player2.collider.extents.y)

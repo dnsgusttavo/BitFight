@@ -1644,7 +1644,7 @@ function Sprite(pInst, _x, _y, _w, _h) {
         stroke(0, 255, 0);
         strokeWeight(1);
         line(this.position.x-10, this.position.y, this.position.x+10, this.position.y);
-        line(this.position.x, this.position.y-10, this.position.x, this.position.y+10);
+        line(this.position.x, this.position.y, this.position.x, this.position.y+10);
         noFill();
 
         //depth number
