@@ -72,20 +72,29 @@ function draw() {
   // }else{
   //   rect(player1.position.x - player1.collider.extents.x,player1.position.y - 5, player1.collider.extents.x,player1.collider.extents.y)
   // }
+  testcc(player1.collider.right(),player1.position.y,player1.collider.right(),(player1.position.y + player1.collider.extents.x),player2.collider.left(),player2.position.y,player2.collider.left(),(player2.position.y + player2.collider.extents.x))
+  
   stroke('red');
-  strokeWeight(5);
+  strokeWeight(4);
   line(player1.collider.right(),player1.position.y,player1.collider.right(),(player1.position.y + player1.collider.extents.x))
-  stroke('blue');
+  stroke('white');
   line(player1.collider.left(),player1.position.y,player1.collider.left(),(player1.position.y + player1.collider.extents.x))
-  stroke('red');
+  stroke('black');
   line(player2.collider.right(),player2.position.y,player2.collider.right(),(player2.position.y + player2.collider.extents.x))
   stroke('blue');
   line(player2.collider.left(),player2.position.y,player2.collider.left(),(player2.position.y + player2.collider.extents.x))
   // rect()
   // rect(player1.position.x - 48 ,player1.position.y,player1.collider.extents.x,player1.collider.extents.y)
   // rect(player2.position.x,player2.position.y,player2.collider.extents.x,player2.collider.extents.y)
-}
 
+  // rect(player1.position.x,player1.position.y,player1.collider.extents.x,player1.collider.extents.y)
+}
+                  //x1,y1,x2,y2 | x3,y3,x4,y4
+function testcc(x1,y1,x2,y2,x3,y3,x4,y4){
+  if(x1 == x3 && y1 == y3 && x2 == x4 && y2 == y4){
+    console.log("alo")
+  }
+}
 function keyPressed(){
   //Pass key param for players class once key is down
   p1.keyOnceDown(key)
