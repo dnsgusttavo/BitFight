@@ -1,3 +1,5 @@
+<img src="https://img.shields.io/badge/STATUS-deprecated-orange" />
+
 <h1 align="center">
     <img alt="Banner" title="Banner" src="./GitHubPromo/banner.png" width="100%" />
 </h1>
